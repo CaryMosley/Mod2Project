@@ -43,3 +43,6 @@ After reviewing this QQ plot we can see tailed data. From here we decided to re-
 
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/QQPlot2.png">
 
+Our final model is a 2nd order polynomial including the base features: Total listings the host has, latitude and longitude, the number of people the listing accomadates, the number of bedrooms, bathrooms and beds, the number of guests included in the base price, the minimum number of nights required the total number of reviews and the average ratings of the listing. Below you can see a dataframe that shows the various finalist models and how they performed. Throughout our process we compared the results of Lasso, Ridge and Elastic Net regularization to choose the best performing model.
+
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/Comparison.png">
