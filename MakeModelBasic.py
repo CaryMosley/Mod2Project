@@ -1,6 +1,10 @@
-def make_models(data, target, num_iter=5, models=['ols', 'lasso', 'ridge','enet'], complexity='simple', degree=3):
-    '''This function takes in the features, target, model, and complexity to return
-    r^2 value'''
+def make_models(data, target, num_iter=5, models=['ols', 'lasso', 'ridge','enet'], complexity='simple', degree=2):
+    '''This function takes in the features as data, target, model, and complexity to return
+    r^2 value.
+    
+    The model specified is the type of linear regression or regularizaiton to use. Complexity is whether it is a simple linear regression, a polynomial with all combinations or a polynomial with just interaction terms.
+    
+    '''
     x_axis = np.arange(num_iter)
     ols_test = []
     lasso_test = []
