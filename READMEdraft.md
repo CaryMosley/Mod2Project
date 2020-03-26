@@ -29,7 +29,6 @@ Next we proceeded to look at null values, outliers and other attributes of the c
 # EDA
 After our cleaning, trimming outliers and removing null values we ended up with a little under 6000 data points. 
 
-
 From looking at our cleaned price data we still have a tail to the upside but its signficantly less extreme than before.
 
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/cleanprice.png">
@@ -39,6 +38,7 @@ We next looked at histograms of our data to check to see how the distributions w
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/cleanprice.png">
 
 Next we looked at scatter plots of our data to check for a linear relationship between our predictors and our outcome variable. We decided to take a closer look at a few of these potential features to see if we could find relationships. We decided to check whether being a superhost seems to impact price, whether instant booking impacts price and whether a response rate of 100% vs any other response rate matters. Our hypotheses were and we used alpha =.05 for each of them
+
 H_0 Average price for superhost is the same as average price not superhost
 H_A Average price for being a super host is not the same as average price for not superhost
 
@@ -65,9 +65,15 @@ After reviewing this QQ plot we can see tailed data. From here we decided to re-
 
 Now that we had a solid baseline model we really wanted to do some feature engineering and reduce our feature set to the ones that make the most logical sense. 
 
-First we removed the neighborhood dummy category as it was 30 columns and we didnt believe the linear regression model would do a good job handling it. Instead we grabbed data from: https://www.bayareamarketreports.com/trend/san-francisco-neighborhood-map and replaced the neighborhood name with the median condo pricing within that area. We believed that this should be a good proxy for a lot of intangible factors such as quality of establishments, crime, walkability.O nce we had this we were able to drop latitude and longitude from our feature set as they don't make intuitive sense in a regression model.
+First we removed the neighborhood dummy category as it was 30 columns and we didnt believe the linear regression model would do a good job handling it. Instead we grabbed data from: https://www.bayareamarketreports.com/trend/san-francisco-neighborhood-map and replaced the neighborhood name with the median condo pricing within that area. We believed that this should be a good proxy for a lot of intangible factors such as quality of establishments, crime, walkability. Once we had this we were able to drop latitude and longitude from our feature set as they don't make intuitive sense in a regression model. We began to look at the Geopy library to potentially map airbnb location vs landmarks but due to the time constraints we weren't able to incorporate it. Given more time it would be interesting to see if location vs landmarks or even famous bar/restuarants could have predictive power.
+
+We also examined a higher order polynomial model and found clear overfitting and worse results on our testing set so we abandonded that route. 
 
 We used a combination of a step wise function, f regression to study the p values of our coefficients and finally our business sense of when we could drop features without losing much predictability to end up with the following features list: neighborhood median price, # of people accomdates, # bathrooms,# bedrooms, # guests included in the price, minimum_nights, number of reviews, review scores rating, and type of room and type of property.
        
+Our final model is a 2nd order polynomial using a LassoCV. We compared our feature set using lasso, ridge, elastic net and OLS to see which model produced the lowest errors. Below you can see the most impactful of the polynomial coefficients. Although once we get to a 2nd order or higher model the features start to lose logical sense we can still use this to inform our decision making process.
 
-Our final model is a 2nd order polynomial using a LassoCV. We compared our feature set using lasso, ridge, elastic net and OLS to see which model produced the lowest errors.
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/Coefficients.png">
+
+When we examined our coefficients the features that stood out both solely or through interaction as the most impactful were: number of people that are accomodated, # bathrooms, reviews ratings and the property type. 
+
