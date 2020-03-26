@@ -43,9 +43,6 @@ def make_models(data, target, num_iter=5, models=['ols', 'lasso', 'ridge','enet'
                 model_metrics['ols_test_r2'] = ols_model_tr.score(X_test, Y_test)
                 model_metrics['ols_train_r2'] = ols_model_tr.score(X_train, Y_train)
             if 'lasso' in models:
-                #lasso_regressor = GridSearchCV(Lasso(), parameters, scoring='neg_mean_squared_error', cv = 5)
-                #lasso_regressor.fit(X_train, Y_train)
-                #alpha = list(lasso_regressor.best_params_.values())[0]
                 lasso = LassoCV(alphas=parameters, cv = val)
                 lasso_model_tr = lasso.fit(X_train, Y_train)
                 train_pred = lasso_model_tr.predict(X_train)
@@ -97,5 +94,5 @@ def make_models(data, target, num_iter=5, models=['ols', 'lasso', 'ridge','enet'
     plt.xlabel('number of iterations')
     plt.ylim((0.40, 0.99))
     plt.legend()
-    print (lasso_model_tr.alpha)
+   
     return sample_models, model_metrics

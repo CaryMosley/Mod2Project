@@ -21,8 +21,11 @@ Notebook which includes a function for rapidly testing multiple feature sets
 MakeModel.py
 Function to run various ols/lasso/ridge/elastic net and poly models. When calling the function you can specify, simple, polynomial or polynomial with interactions. Also the degree of the polynomial, the type of regression as well as alpha and cv values. 
 
+
+
+
 # Business Case
-The purpose of this case is to work with prospective AirBNB business clients to help them price their units. To do this we will retrieve data, develop an alogorithm to predict optimal pricing using a robust feature set and then explain why these business drivers matter. The goal is for our client to recieve a fair market price for their unit and to maintain a business relationship for social media promotion.
+his linear regression project takes the setting of a social media marketing company that helps individuals who operate or want to operate an AirBNB business in San Francisco get up and running.The purpose of this case is to work with prospective AirBNB business clients to help them price their units. To do this we will retrieve data, develop an alogorithm to predict optimal pricing using a robust feature set and then explain why these business drivers matter. The goal is for our client to recieve a fair market price for their unit and to maintain a business relationship for social media promotion. We plan to focus on the millenial age group and those who have units in the most popular property and room types.
 
 # Data Source and Cleaning
 We sourced our data from https://www.kaggle.com/jeploretizo/san-francisco-airbnb-listings which is a list of about 8k data points with over 100 columns. The first thing we did was remove most columns that were clearly not going to be useful as features. Examples of these are url, image, host name. From here we were left with around 40 columns that we looked into more before deciding which ones to keep.
@@ -42,19 +45,24 @@ From looking at our cleaned price data we still have a tail to the upside but it
 
 We next looked at histograms of our data to check to see how the distributions within the features looked. From here we created a heatmap to check for multicollinearity. Maximum and minimum nights had a correlation of almost one so we decided to drop maximum nights. Additionally, beds and accomodates had a very high correlation so we plan to drop beds by the end of our feature engineering process.
 
-<img src="https://github.com/CaryMosley/Mod2Project/blob/master/cleanprice.png">
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/heatmap.png">
 
 Next we looked at scatter plots of our data to check for a linear relationship between our predictors and our outcome variable. We decided to take a closer look at a few of these potential features to see if we could find relationships. We decided to check whether being a superhost seems to impact price, whether instant booking impacts price and whether a response rate of 100% vs any other response rate matters. Our hypotheses were and we used alpha =.05 for each of them
 
 H_0 Average price for superhost is the same as average price not superhost
 H_A Average price for being a super host is not the same as average price for not superhost
 
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/superhost.png">
 
 H_0 Average price for instant booking is the same as average price for no instant booking
 H_A Average price for instant booking is not the same as average price for no instant booking
 
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/instantbook.png">
+
 H_0 Average price for 100% response rate is the same as average price anything besides 100% response rate
 H_A Average price for 100% response rate is higher than the average price anything besides 100% response rate
+
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/responserate.png">
 
 As the difference between the means for these ended up relatively low we had low cohen's d values for each and ended not being able to reject any of the null hypothesis. As our sample sizes were quite large we approached a power of 1 for each of these tests.
 
@@ -80,7 +88,7 @@ We used a combination of a step wise function, f regression to study the p value
        
 Our final model is a 2nd order polynomial using a LassoCV. We compared our feature set using lasso, ridge, elastic net and OLS to see which model produced the lowest errors. Below you can see the most impactful of the polynomial coefficients. Although once we get to a 2nd order or higher model the features start to lose logical sense we can still use this to inform our decision making process.
 
-<img src="https://github.com/CaryMosley/Mod2Project/blob/master/Coefficients.png">
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/pricemovers2.png">
 
 # Business Features
 When we examined our coefficients the features that stood out both solely or through interaction as the most impactful were: number of people that are accomodated, # bathrooms, reviews ratings and the property type. When we go back to our clients we can use the fundamental features of their unit: size, number of bathrooms, property type to help the client get a fair market rate. Also as the review score and number of reviews were strongly correlated with price we will work with the operator to optimize their quality and help them maximize the number of reviews they can obtain.
