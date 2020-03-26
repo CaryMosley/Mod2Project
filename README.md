@@ -75,11 +75,13 @@ After trimming and imputing our outliers and missing values we created a second 
 
 # Feature Engineering and Model Building
 
-The first thing we did was create dummy variables for room type, property type and neighborhood. We also took the opportunity to iterate on models and drop features that our business sense indicated would have little predictive power. These included the features we had done hypothesis testing on: superhost, instant booking and response rate. Dropping these didn't increase our RMSE and actually resulted in higher r^2 values so we can be confident they're good drops. After iterating we ended up with a RMSE in the low 80s and an r^2 value in the mid .60s using a lasso regularization on a 2nd order polynomial model. In the jupyter notebook you can see our iterative process involving lasso, ridge and elastic regularization as well as exploring 2nd and 3rd order polynomial models. Below is the residual plot so we can check for homoskedasticity.
+The first feature engineering that we did was create dummy variables for room type, property type and neighborhood. As we had only 3 room types and 4 property types we felt comfortable that we would not be overwhelming the linear model with categorical variables.
+
+We then took the opportunity to iterate on models and drop features that our business sense indicated would have little predictive power. These included the features we had done hypothesis testing on: superhost, instant booking and response rate. Dropping these didn't increase our RMSE and actually resulted in higher r^2 values so we can be confident they're good drops. After iterating we ended up with a RMSE in the low 80s and an r^2 value in the mid .60s using a lasso regularization on a 2nd order polynomial model. In the jupyter notebooks AirbnbFeatureEng and AirbnbFeatureEngFucntion you can see some of our iterative process involving lasso, ridge and elastic regularization. We also explored 2nd and 3rd order polynomial models to optimize our algorithm. Below is the residual plot so we can check for homoskedasticity.
 
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/QQPlot1.png">
 
-After reviewing this QQ plot we can see tailed data. From here we decided to re-evaluate our outliers and ended up deciding to remove the top and bottom 2.5% of data. This corresponded to $600 on the upper end and $55 on the lower. Next we re-ran our model! This resulted in a significantly lower RMSE of 64 with an adjusted r^2 value of .70. We took a look at the QQ plot and altho still slightly tailed it is much more symmetric and significantly less extreme. 
+After reviewing this QQ plot we can see tailed data. From here we decided to re-evaluate our outliers and ended up deciding to remove the top and bottom 2.5% of data. This corresponded to $600 on the upper end and $55 on the lower. Next we re-ran our model! This resulted in a significantly lower RMSE of ~65 with an adjusted r^2 value of .65. We took a look at the QQ plot and altho still slightly tailed it is much more symmetric and significantly less extreme. 
 
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/QQPlot2.png">
 
