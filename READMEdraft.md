@@ -13,13 +13,16 @@ AirbnbEDA
 Notebook where we explore our data and run hypothesis tests
 
 AirbnbFeatureEng
-Notebook where we show a few of the models that we have iterated through and plot the results
+Notebook where we show a few of the models that we have iterated through and append into a summary df
 
 AirbnbFeatureEngFunction
 Notebook which includes a function for rapidly testing multiple feature sets
 
 MakeModel.py
 Function to run various ols/lasso/ridge/elastic net and poly models. When calling the function you can specify, simple, polynomial or polynomial with interactions. Also the degree of the polynomial, the type of regression as well as alpha and cv values. 
+
+# Business Case
+The purpose of this case is to work with prospective AirBNB business clients to help them price their units. To do this we will retrieve data, develop an alogorithm to predict optimal pricing using a robust feature set and then explain why these business drivers matter. The goal is for our client to recieve a fair market price for their unit and to maintain a business relationship for social media promotion.
 
 # Data Source and Cleaning
 We sourced our data from https://www.kaggle.com/jeploretizo/san-francisco-airbnb-listings which is a list of about 8k data points with over 100 columns. The first thing we did was remove most columns that were clearly not going to be useful as features. Examples of these are url, image, host name. From here we were left with around 40 columns that we looked into more before deciding which ones to keep.
@@ -75,5 +78,9 @@ Our final model is a 2nd order polynomial using a LassoCV. We compared our featu
 
 <img src="https://github.com/CaryMosley/Mod2Project/blob/master/Coefficients.png">
 
-When we examined our coefficients the features that stood out both solely or through interaction as the most impactful were: number of people that are accomodated, # bathrooms, reviews ratings and the property type. 
+# Business Features
+When we examined our coefficients the features that stood out both solely or through interaction as the most impactful were: number of people that are accomodated, # bathrooms, reviews ratings and the property type. When we go back to our clients we can use the fundamental features of their unit: size, number of bathrooms, property type to help the client get a fair market rate. Also as the review score and number of reviews were strongly correlated with price we will work with the operator to optimize their quality and help them maximize the number of reviews they can obtain.
+
+# Future Extensions
+Given more time we would want to explore a couple of things. First we would use Geopy to see if we can build a feature based score on proximity to local landmarks or quality bars and restaurants. Additionally we would want to see if we could explore how the number of nights minimum impacts price. There may be extra opportunity for either shorter or longer term pricing if we can determine a strong relationship that matters.
 
