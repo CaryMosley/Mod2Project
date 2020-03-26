@@ -29,6 +29,10 @@ We sourced our data from https://www.kaggle.com/jeploretizo/san-francisco-airbnb
 
 Next we proceeded to look at null values, outliers and other attributes of the columns that needed to be cleaned. For certain columns that had very low numbers of missing values we simply dropped those observations. We were missing reviews for about 20% of our values so we imputed the values by grouping by neighborhood and then using the average rating for that neighborhood as the value. Based on our business case we decided to trim some outliers and also certain columns that we didnt believe would be useful. For example where the daily room rate was over $1,000 or minimum number of nights was over two months. As were focused in San Francisco, we dropped the ~20 data points that were outside the city.
 
+We also decide to focus on the major property types found within San Francisco. As we are trying to present a business case to a wide reaching client base we wanted to focus on the largest potential customer base. Below you can see the distribution of property types
+
+<img src="https://github.com/CaryMosley/Mod2Project/blob/master/propertytypecount.png">
+
 # EDA
 After our cleaning, trimming outliers and removing null values we ended up with a little under 6000 data points. 
 
@@ -50,7 +54,7 @@ H_0 Average price for instant booking is the same as average price for no instan
 H_A Average price for instant booking is not the same as average price for no instant booking
 
 H_0 Average price for 100% response rate is the same as average price anything besides 100% response rate
-H_A Average price for 100% response rate is not the same as average price anything besides 100% response rate
+H_A Average price for 100% response rate is higher than the average price anything besides 100% response rate
 
 As the difference between the means for these ended up relatively low we had low cohen's d values for each and ended not being able to reject any of the null hypothesis. As our sample sizes were quite large we approached a power of 1 for each of these tests.
 
