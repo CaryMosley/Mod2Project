@@ -1,6 +1,9 @@
 # Mod2Project
 Module 2 Project
 
+## Presentation Link
+[Google Slides Link](https://docs.google.com/presentation/d/1L5_fkrCM8f3bKsAMa683L-iRMYe082sYEWBSD6F3yF4/edit?usp=sharing)
+
 # File Index
 
 AirbnbDropColumns
