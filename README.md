@@ -106,4 +106,4 @@ When we examined our coefficients the features that stood out both solely or thr
 
 # Future Extensions
 
-Given more time we would want to explore a couple of things. First we would use Geopy to see if we can build a feature based score on proximity to local landmarks or quality bars and restaurants. Additionally we would want to see if we could explore how the number of nights minimum impacts price. There may be extra opportunity for either shorter or longer term pricing if we can determine a strong relationship that matters.
+Given more time we would want to explore a couple of things. First we would use Geopy to see if we can build a feature based score on proximity to local landmarks or quality bars and restaurants. Additionally we would want to see if we could explore how the number of nights minimum impacts price. There may be extra opportunity for either shorter or longer term pricing if we can determine a strong relationship that matters. Additionally, if we were able to source data straight from clients we could add in features such as quality of the property, square feet, as well as amenities.
